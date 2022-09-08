@@ -6,13 +6,15 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:39:21 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/02 21:53:04 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:33:25 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 127)
+	if (c >= 32 && c <= 126)
 		return (5);
 	else
 		return (0);

@@ -6,9 +6,11 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 00:47:40 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/03 00:48:39 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/09/03 22:29:55 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_toupper(int c)
 {

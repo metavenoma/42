@@ -6,9 +6,11 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:55:23 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/02 22:03:24 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/09/03 20:44:13 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -17,6 +19,5 @@ size_t	ft_strlen(const char *s)
 	i = 0;
 	while (s[i] != '\0')
 		i++;
-	i++;
 	return (i);
 }

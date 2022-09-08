@@ -6,7 +6,7 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:08:08 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/03 01:01:48 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/09/03 21:04:45 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void *ft_memset(void *s, int c, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		s[i] = c;
+		((unsigned char*)s)[i] = (unsigned char)c;
 		i++;
 	}
-	return (*s);
+	return (s);
 }
