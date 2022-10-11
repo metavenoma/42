@@ -6,7 +6,7 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 23:38:47 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/09 00:04:45 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/10/06 22:55:15 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ char	*ft_itoa(int n)
 		n = n / 10;
 		i++;
 	}
-	if (!(res = (char *)malloc((i + 1) * (sizeof(char)))))
+	if (n < 0)
+		i++;
+	if (!(res = ((char *)malloc((i + 1) * (sizeof(char))))))
 		return (NULL);
 	res[i] = '\0';
 	i--;
@@ -40,7 +42,7 @@ char	*ft_itoa(int n)
 	j = 1;
 	if (n < 0)
 	{
-		neg[0] = '-';
+		res[0] = '-';
 		while (j <= ft_strlen(res))
 		{
 			res[j] = res[i];
@@ -51,7 +53,7 @@ char	*ft_itoa(int n)
 	return (res);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("%s\n", ft_itoa(-2349));
-}
+}*/
