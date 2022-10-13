@@ -1,10 +1,12 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/06 22:51:42 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/06 22:51:52 by rverona-         ###   ########.fr       */
+/*   Created: 2022/10/13 19:39:45 by rverona-          #+#    #+#             */
+/*   Updated: 2022/10/13 21:04:34 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -12,17 +14,22 @@
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t l_s;
+	size_t	i;
+	size_t	j;
 
-	l_s = ft_strlen(little);
 	if (*little == '\0')
 		return ((char *)big);
-	while (l_s < len && *big != '\0')
+	i = 0;
+	while (i < len && big[i] != '\0')
 	{
-		if (*big == *little && ft_strncmp(big, little, l_s) == 0)
-			return ((char *)big);
-		big++;
-		len--;
+		j = 0;
+		while ((big[i + j] == little[j]) && (i + j) < len)
+		{
+			if (little[j + 1] == '\0')
+				return ((char *)(&big[i]));
+			j++;
+		}
+		i++;
 	}
 	return (NULL);
 }

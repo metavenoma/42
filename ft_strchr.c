@@ -6,7 +6,7 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 20:30:18 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/03 21:59:35 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:48:20 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{	
-		if (s[i] == c)
-			return (&((char *)s)[i]);
-		i++;
-	}
+	while ((*s != (char)c) && (*s != '\0'))
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
 	if (c == '\0')
 	{
-		i++;
-		return (&((char*)s)[i]);
+		s++;
+		return ((char *)s);
 	}
 	return (NULL);
 }

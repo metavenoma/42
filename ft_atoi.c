@@ -6,7 +6,7 @@
 /*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 00:05:47 by rverona-          #+#    #+#             */
-/*   Updated: 2022/09/07 00:30:42 by rverona-         ###   ########.fr       */
+/*   Updated: 2022/10/13 20:08:43 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_atoi(const char *nptr)
 {
 	int	signal;
-	int res;
+	int	res;
 	int	i;
 
 	signal = 1;

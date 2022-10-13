@@ -6,7 +6,7 @@
 #    By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 23:54:38 by rverona-          #+#    #+#              #
-#    Updated: 2022/10/06 22:38:50 by rverona-         ###   ########.fr        #
+#    Updated: 2022/10/13 22:58:08 by rverona-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,15 +24,16 @@ SRCS += ft_memcpy.c ft_memmove.c ft_strrchr.c
 SRCS += ft_memchr.c ft_memcmp.c	ft_strnstr.c
 SRCS += ft_atoi.c ft_strlcpy.c ft_strlcat.c
 SRCS += ft_calloc.c ft_strdup.c ft_substr.c
-SRCS += ft_strjoin.c ft_itoa.c 
+SRCS += ft_strjoin.c ft_itoa.c ft_strtrim.c
+SRCS += ft_split.c ft_strmapi.c ft_striteri.c
+SRCS += ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c
+SRCS += ft_putnbr_fd.c
 OBJS = ${SRCS:.c=.o}
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(ARC) $(NAME) $(OBJS) libft.h
-
-bonus:
 
 clean:
 	$(RM) $(OBJS)
