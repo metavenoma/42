@@ -1,4 +1,16 @@
-#include "printf_lib.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/08 22:27:17 by rverona-          #+#    #+#             */
+/*   Updated: 2022/12/08 22:59:41 by rverona-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	convert_specifier(va_list *args, char specifier)
 {
@@ -27,17 +39,24 @@ int	convert_specifier(va_list *args, char specifier)
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int	printf_len;
+	int		i;
+	int		printf_len;
 
-	printf_len = 0;
+	if (!str)
+		return (-1);
 	va_start(args, str);
-	while (*str)
+	printf_len = 0;
+	i = 0;
+	while (str[i])
 	{
-		if (*str == '%')
-			printf_len += convert_specifier(&args, *++str);
-		else if (*str)
-			printf_len += printchar(*str);
-		str++;
+		if (str[i] == '%')
+		{
+			i++;
+			printf_len += convert_specifier(&args, str[i]);
+		}
+		else
+			printf_len += printchar(str[i]);
+		i++;
 	}
 	va_end(args);
 	return (printf_len);
