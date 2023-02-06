@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 17:33:40 by rverona-          #+#    #+#             */
-/*   Updated: 2023/02/05 17:59:31 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/02/06 10:59:40 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	handle_mouse(int keycode, int x, int y, t_fractol *fractol)
 
 	center = init_c(((fractol->max.re - fractol->min.re) / WIDTH),
 			((fractol->max.im - fractol->min.im) / HEIGHT));
-	if (keycode == 4)
+	if (keycode == MOUSE_UP)
 	{
 		fractol->min.re = (fractol->min.re + ((center.re * x) * 0.1));
 		fractol->max.re = (fractol->max.re
@@ -28,7 +28,7 @@ int	handle_mouse(int keycode, int x, int y, t_fractol *fractol)
 				+ ((center.im * (HEIGHT - y)) * 0.1));
 		render(fractol);
 	}
-	if (keycode == 5)
+	if (keycode == MOUSE_DOWN)
 	{
 		fractol->min.re = (fractol->min.re - ((center.re * x) * 0.1));
 		fractol->max.re = (fractol->max.re

@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/05 17:34:05 by rverona-          #+#    #+#             */
-/*   Updated: 2023/02/05 19:00:49 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:58:26 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_putstr_fd(char *str, int fd)
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < n)
@@ -47,12 +47,13 @@ void	ft_bzero(void *s, size_t n)
 		i++;
 	}
 }
+
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*pt;
 
 	if ((!nmemb || !size) || size > SIZE_MAX / nmemb)
-			return (NULL);
+		return (NULL);
 	pt = (void *)malloc(nmemb * size);
 	ft_bzero(pt, nmemb * size);
 	return (pt);

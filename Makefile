@@ -14,6 +14,11 @@ SRC_PATH = sources/
 SRCS = complex.c exit.c help.c init.c color.c
 SRCS += keyboard.c main.c mouse.c render.c 
 SRCS += utils.c fractal_sets/mandelbrot.c fractal_sets/julia.c
+SRCS += fractal_sets/burning_ship.c fractal_sets/tricorn.c
+SRCS += fractal_sets/celtic_mandelbrot.c fractal_sets/perpendicular_buffalo.c
+SRCS += fractal_sets/perpendicular_mandelbrot.c fractal_sets/celtic_mandelbar.c
+SRCS += fractal_sets/perpendicular_burning_ship.c
+SRCS += fractal_sets/celtic_perpendicular.c
 
 OBJ_PATH = objects/
 OBJ = $(SRCS:.c=.o)
