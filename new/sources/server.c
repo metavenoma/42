@@ -6,7 +6,7 @@
 typedef struct s_server_sa 
 {
 	struct sigaction	sa;
-	char			c;
+	char			byte;
 }	t_server_sa;
 
 t_server_sa	sa;
@@ -45,19 +45,19 @@ void    terminate(int status, char *error_msg)
 	}
 	exit(status);
 }
-static void	signal_handler(int signal, siginfo_t *info, void *ucontext)
+static void	signal_handler(int signal, siginfo_t *info, void *context)
 {
 	static int	bit;
 
-	(void)ucontext;
+	(void)context;
 	if (signal == SIGUSR1)
-		sa.c |= (0x01 << bit);
+		sa.byte |= (0x01 << bit);
 	bit++;
 	if (bit == 8)
 	{
-		printf("%c", sa.c);
+		printf("%c", sa.byte);
 		bit = 0;
-		sa.c = 0;
+		sa.byte = 0;
 		kill(info->si_pid, SIGUSR2);
 	}
 }
