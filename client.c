@@ -3,7 +3,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	g_stay;
+typedef struct s_client_sa
+{
+	struct sigaction	sa;
+	int			s_pid;
+}	t_client_sa;
+
+t_client_sa	sa;
 
 void	ft_putstr_fd(char *str, int fd)
 {
@@ -41,12 +47,12 @@ void	terminate(int status, char *error_msg)
 	exit(status);
 }
 
-static void	signal_handler(int signal)
+static void	signal_handler(int signal, siginfo_t *c_info, void *context)
 {
-	if (signal == SIGUSR1)
-		g_stay = 0;
-	else
-		printf("Message sent successfully\n");
+	if (sa.s_pid != c_info->si_pid)
+		return ;
+	(void)signal;
+	(void)context;
 }
 
 void	bit_to_binary(int pid, char byte)
@@ -56,41 +62,36 @@ void	bit_to_binary(int pid, char byte)
 	bit = 0;
 	while (bit < 8)
 	{
-		if (g_stay == 0)
-		{
-			g_stay = 1;
-			if ((byte & (0x01 << bit)) != 0)
-				kill(pid, SIGUSR1);
-			else 
-				kill(pid, SIGUSR2);
-			usleep(100);
-		}
-		bit++;	
+		if ((byte & (0x01 << bit)) != 0)
+			kill(pid, SIGUSR1);
+		else 
+			kill(pid, SIGUSR2);
+		usleep(100);
+		bit++;
 	}
 }
 
 int	main(int argc, char **argv)
 {
-	struct sigaction	mt;
 	int	i;
 	int	pid;
 	
-	g_stay = 0;
 	i = 0;
 	if (argc != 3)
 		terminate(EXIT_FAILURE, "Invalid parameters, try ./client <PID> <string>");
-	pid = atoi(argv[1]);
-	if (pid <= 0)
+	sa = (t_client_sa) {0};
+	sa.s_pid = atoi(argv[1]);
+	if (sa.s_pid <= 0)
 		terminate(EXIT_FAILURE, "Invalid PID.");
-	mt = (struct sigaction) {0};
-	mt.sa_handler = &signal_handler;
-	sigaction(SIGUSR1, &mt, NULL);
-	sigaction(SIGUSR2, &mt, NULL);
+	sa.sa.sa_sigaction = &signal_handler;
+	sa.sa.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &sa.sa, NULL);
+	sigaction(SIGUSR2, &sa.sa, NULL);
 	while (argv[2][i] != '\0')
 	{
-		bit_to_binary(pid, argv[2][i]);
+		bit_to_binary(sa.s_pid, argv[2][i]);
 		i++;
 	}
-	bit_to_binary(pid, '\n');
+	bit_to_binary(sa.s_pid, '\n');
 	return (0);
 }
