@@ -14,11 +14,8 @@ LIB = libft/libft.a
 RM = rm -rf
 
 OBJ_PATH = objects/
-SRCS_PATH = sources/
 
 INC = -I ./includes
-
-SRC_PATH = sources/
 
 $(OBJ_PATH)%.o: %.c
 	@mkdir -p $(dir $@)

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
+/*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 21:30:56 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/23 09:17:43 by rverona-         ###   ########.fr       */
+/*   Created: 2023/03/23 10:59:17 by rverona-          #+#    #+#             */
+/*   Updated: 2023/03/23 11:06:11 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s1[i] == s2[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

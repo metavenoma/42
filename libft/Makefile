@@ -6,7 +6,7 @@
 #    By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 23:54:38 by rverona-          #+#    #+#              #
-#    Updated: 2023/03/20 16:34:09 by rverona-         ###   ########.fr        #
+#    Updated: 2023/03/24 11:31:31 by rverona-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ RM = rm -rf
 
 INC = libft.h
 
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c
-SRCS += ft_isascii.c ft_isprint.c ft_strlen.c
-SRCS += ft_memset.c ft_bzero.c ft_toupper.c
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_atoli.c
+SRCS += ft_isascii.c ft_isprint.c ft_strlen.c ft_strcmp.c
+SRCS += ft_memset.c ft_bzero.c ft_toupper.c ft_strdigit.c
 SRCS += ft_tolower.c ft_strncmp.c ft_strchr.c
 SRCS += ft_memcpy.c ft_memmove.c ft_strrchr.c
 SRCS += ft_memchr.c ft_memcmp.c	ft_strnstr.c
@@ -34,7 +34,7 @@ SRCS += ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c
 SRCS += ft_putnbr_fd.c ft_printf.c printf_utils/printchar.c
 SRCS += printf_utils/printhex.c printf_utils/printnbr.c
 SRCS += printf_utils/printptr.c printf_utils/printstr.c
-SRCS += printf_utils/printunsigned.c get_next_line.c
+SRCS += printf_utils/printunsigned.c get_next_line.c ft_isnum.c
 
 OBJ_PATH = objects/
 LIBFT_OBJ = $(SRCS:.c=.o)

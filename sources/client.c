@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 15:54:09 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/21 16:40:48 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:30:54 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	send_bit(int bit)
 	if (bit)
 	{
 		if (kill(g_client.pid, SIGUSR1) == -1)
-			terminate(1, "server offline");
+			terminate(1, "Server offline or invalid PID");
 		usleep(100);
 	}
 	else
 	{
 		if (kill(g_client.pid, SIGUSR2) == -1)
-			terminate(1, "server offline");
+			terminate(1, "Server offline or invalid PID");
 		usleep(100);
 	}
 }
@@ -72,7 +72,7 @@ int	main(int argc, char **argv)
 		terminate(1, "Wrong number of arguments");
 	}
 	g_client.pid = ft_atoi(argv[1]);
-	if (g_client.pid <= 0)
+	if (g_client.pid <= 0 || !ft_strdigit(argv[1]))
 		terminate(1, "Invalid PID.");
 	g_client.sa.sa_flags = 1;
 	signal(SIGUSR1, signal_handler);

@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strdigit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+        */
+/*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 21:30:56 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/23 09:17:43 by rverona-         ###   ########.fr       */
+/*   Created: 2023/03/24 11:26:12 by rverona-          #+#    #+#             */
+/*   Updated: 2023/03/24 11:34:09 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_strdigit(char *str)
 {
-	if (c >= 48 && c <= 57)
-		return (1);
-	return (0);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+	}
+	return (1);
 }

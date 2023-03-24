@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 18:19:07 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/21 16:40:51 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:22:52 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	terminate(int status, char *error_msg)
 {
 	if (error_msg)
 	{
-		ft_putstr_fd("      SERVER ERROR: ", 1);
+		ft_putstr_fd("SERVER ERROR: ", 1);
 		ft_putendl_fd(error_msg, 2);
 	}
 	exit(status);
