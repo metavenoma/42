@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 01:22:47 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/24 09:20:50 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:54:02 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	swap_a(t_stack	*stack)
 {
-	int	temp;
+	long long	temp;
 
 	if (stack_len(stack) < 2)
 		return ;
@@ -27,7 +27,7 @@ void	swap_a(t_stack	*stack)
 
 void	swap_b(t_stack	*stack)
 {
-	int	temp;
+	long long	temp;
 
 	if (stack_len(stack) < 2)
 		return ;
@@ -40,7 +40,7 @@ void	swap_b(t_stack	*stack)
 
 void	swap_ab(t_stack *stack_a, t_stack *stack_b)
 {
-	int	temp;
+	long long	temp;
 
 	if (stack_len(stack_a) < 2 && stack_len(stack_b) < 2)
 		return ;

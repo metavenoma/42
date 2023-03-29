@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:12:51 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/24 09:26:53 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:39:32 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	validate(char **arg)
 	i = 0;
 	while (arg[++i])
 	{
-		if (ft_strlen(arg[1]) > 11)
+		if (ft_strlen(arg[i]) > 15)
 			error_msg(0);
 		if (!ft_isnum(arg[i]))
 			error_msg(0);
-		if (ft_atoli(arg[i]) > INT_MAX || ft_atoli(arg[i]) < INT_MIN)
+		if (ft_atoll(arg[i]) > INT_MAX || ft_atoll(arg[i]) < INT_MIN)
 			error_msg(0);
 	}
 	return (1);

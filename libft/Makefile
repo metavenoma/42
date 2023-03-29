@@ -6,7 +6,7 @@
 #    By: rverona- <rverona-@student.42.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/01 23:54:38 by rverona-          #+#    #+#              #
-#    Updated: 2023/03/23 11:04:02 by rverona-         ###   ########.fr        #
+#    Updated: 2023/03/24 15:56:39 by rverona-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ RM = rm -rf
 
 INC = libft.h
 
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_atoli.c
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_atoll.c
 SRCS += ft_isascii.c ft_isprint.c ft_strlen.c ft_strcmp.c
 SRCS += ft_memset.c ft_bzero.c ft_toupper.c
 SRCS += ft_tolower.c ft_strncmp.c ft_strchr.c

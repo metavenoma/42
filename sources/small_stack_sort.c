@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 14:58:17 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/24 09:20:01 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 15:52:32 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 {
 	int	max;
 
-	if (is_sorted(stack_a))
-		return ;
 	max = max_index(stack_a);
 	if (max == 2)
 	{
@@ -84,8 +82,6 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 
 void	basic_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	if (is_sorted(stack_a))
-		terminate(1, stack_a, stack_b);
 	if (!find_duplicate(stack_a))
 		terminate(1, stack_a, stack_b);
 	if (stack_len(stack_a) < 2)

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoli.c                                         :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 09:24:35 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/23 09:31:50 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:41:53 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoli(const char *nptr)
+long long	ft_atoll(const char *nptr)
 {
-	int			signal;
-	long int	res;
+	long long	signal;
+	long long	res;
 	int			i;
 
 	signal = 1;

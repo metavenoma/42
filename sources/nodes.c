@@ -6,7 +6,7 @@
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:08:20 by rverona-          #+#    #+#             */
-/*   Updated: 2023/03/24 09:21:52 by rverona-         ###   ########.fr       */
+/*   Updated: 2023/03/24 16:22:22 by rverona-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	add_tail_node(t_stack *stack, t_node *node)
 	return ;
 }
 
-t_node	*new_node(int data, int index)
+t_node	*new_node(long long data, int index)
 {
 	t_node	*node;
 
@@ -79,11 +79,11 @@ t_stack	*new_stack(char *arg[])
 
 	i = 0;
 	stack = (t_stack *)malloc(sizeof(t_stack));
-	head = new_node(ft_atoi(arg[i]), 0);
+	head = new_node(ft_atoll(arg[i]), 0);
 	node = head;
 	while (arg[++i])
 	{
-		node->next = new_node(ft_atoi(arg[i]), 0);
+		node->next = new_node(ft_atoll(arg[i]), 0);
 		temp = node;
 		node = node->next;
 		node->prev = temp;

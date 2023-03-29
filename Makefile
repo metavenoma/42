@@ -6,7 +6,7 @@ OBJ = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 LIB = libft/libft.a
 RM = rm -rf
 
