@@ -18,16 +18,7 @@ The projects cover a wide range of topics, including:
 Throughout the piscine, students are encouraged to collaborate with each other, share knowledge, and learn from their mistakes.
 Repository Structure
 
-This repository is organized into folders for each day of the piscine. Each folder contains the code I wrote for the corresponding day's projects and exercises.
-
-Some of the projects in this repository include:
-
-    rush00: A group project to create a two-player game
-    bsq: A program that finds the largest square of open space in a map of obstacles
-    ft_printf: A reimplementation of the C printf function
-    minitalk: A client-server program for sending messages between processes
-    pipex: A program for executing shell commands with input and output piped between them
-    libft: A library of useful C functions
+This repository is organized into folders for each list I made off of the piscine program. Each folder contains the code I wrote for the corresponding day's projects and exercises. I did not do the whole curriculum, since I did not come from programming background (I actually don't know of anyone who actually did all the lists).
 
 ## Conclusion
 
