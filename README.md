@@ -8,8 +8,8 @@ To use the get_next_line function in your C program, simply include the get_next
 Here is an example usage of the get_next_line function:
 
 
-`code()`
-#include "get_next_line.h"
+
+`#include "get_next_line.h"
 #include <stdio.h>
 
 int main(int argc, char **argv)
@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         free(line);
     }
     return (0);
-}
+}`
 
 ## Concepts Implemented
 
