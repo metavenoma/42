@@ -8,7 +8,7 @@ To use the get_next_line function in your C program, simply include the get_next
 Here is an example usage of the get_next_line function:
 
 
-```
+```C
 #include "get_next_line.h"
 #include <stdio.h>
 
