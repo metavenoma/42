@@ -7,12 +7,12 @@ The Piscine Reloaded project is a review of the C programming concepts covered i
 
 The project covers a wide range of topics, including:
 
-    * Basic C programming concepts
-    * Memory allocation and deallocation
-    * Pointers and arrays
-    * Command-line arguments
-    * Basic file I/O
-    * And more
+  * Basic C programming concepts
+  * Memory allocation and deallocation
+  * Pointers and arrays
+  * Command-line arguments
+  * Basic file I/O
+  * And more
 
 Throughout the project, students are encouraged to work independently and seek help from their peers and instructors when needed.
 ## Repository Structure
@@ -21,10 +21,10 @@ This repository is organized into folders for each section of the project. Each 
 
 Some of the exercises in this repository include
 
-    * ex00: 
-    * ex02: 
-    * ex04: 
-    * ex08:
+  * ex00: 
+  * ex02: 
+  * ex04: 
+  * ex08:
 
 ## Conclusion
 
