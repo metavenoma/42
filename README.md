@@ -21,10 +21,10 @@ This repository is organized into folders for each section of the project. Each 
 
 Some of the exercises in this repository include
 
-  * ex00: 
-  * ex02: 
-  * ex04: 
-  * ex08:
+  * ex19: A program that sorts and displays its given arguments by ascii order. 
+  * ex24: An exercise to create a Makefile.
+  * ex25: A function called ft_foreach that applies a given function to every element in a given int array. 
+  * ex27: A program called "display_file" that displays the content of a given file on standard output.
 
 ## Conclusion
 
