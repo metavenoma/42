@@ -12,11 +12,11 @@ The libft library is a collection of useful C functions that I wrote to simplify
     And more
 
 The functions are designed to be efficient and easy to use, with clear documentation and error handling.
-Repository Structure
+## Repository Structure
 
 This repository is organized into folders for each category of functions. Each folder contains the source code for the corresponding functions, as well as a header file with function prototypes and macros.
 
-## Some of the categories of functions in this repository include:
+Some of the categories of functions in this repository include:
 
     libft: The core library functions, such as memset, memcpy, and strlen
     ft_printf: A reimplementation of the C printf function
