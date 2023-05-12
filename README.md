@@ -18,11 +18,10 @@ This repository is organized into folders for each category of functions. Each f
 
 Some of the categories of functions in this repository include:
 
-    libft: The core library functions, such as memset, memcpy, and strlen
-    ft_printf: A reimplementation of the C printf function
-    get_next_line: A function for reading input from a file descriptor line by line
-    ft_lst: Functions for working with linked lists, such as ft_lstnew and ft_lstadd_back
-    ft_btree: Functions for working with binary trees, such as ft_btree_create_node and ft_btree_level_order
+    libc_functions: The core library functions, such as memset, memcpy, and strlen, created based on LibC library;
+    additional_functions: Other mandatory functions that are not included in LibC and some utilitary functions I created;
+    ft_printf: A reimplementation of the C printf function;
+    get_next_line: A function for reading input from a file descriptor line by line;
 
 ## Conclusion
 
