@@ -33,54 +33,72 @@ int	args_parser(int ac, char **av)
 	return (1);
 }
 
-t_args	*init_args_struct(char **av)
+t_philo	*init_philosophers(int ac, char **av)
 {
-	t_args	*args;
-	
-	args = (t_args *)malloc(sizeof(t_args));
-	args->philosophers = ft_atoi(av[1]);
-	args->time_to_die = ft_atoi(av[2]);
-	args->time_to_eat = ft_atoi(av[3]);
-	args->time_to_sleep = ft_atoi(av[4]);
-	if (av[5])
-		args->number_of_meals = ft_atoi(av[5]);
+	t_philo	*philo;
+
+	philo = (t_philo *)malloc(sizeof(t_philo));
+	philo->args = (t_args *)malloc(sizeof(t_args));
+	if (!philo || !philo->args)
+		return (NULL);
+	philo->args->philosophers = ft_atoi(av[1]);
+	philo->args->time_to_die = ft_atoi(av[2]);
+	philo->args->time_to_eat = ft_atoi(av[3]);
+	philo->args->time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+		philo->args->number_of_meals = ft_atoi(av[5]);
 	else
-		args->number_of_meals = 0;
-	return (args);
+		philo->args->number_of_meals = 0;
+	init_forks(philo);
+	return (philo);
 }
 
 void	*philosophers_routine(void *arg)
 {
-	
+	printf("hello from thread");
+	return (arg);
 }
 
-void	init_philosophers(t_philo *philo, t_args *args)
+void	init_forks(t_philo *philo)
 {
-	
-}
+	int	i;
 
-t_philo	*philosophers(t_args *args)
-{
-	t_philo	*philo;
-	int		i;
-
-	philo = (t_philo *)malloc(sizeof(t_philo));
-	i = 0;
-	while (i < args->philosophers)
+	philo->forks = (int *)malloc((sizeof(int) *
+			philo->args->philosophers));
+	philo->th = (pthread_t *)malloc((sizeof(pthread_t) *
+				philo->args->philosophers));
+	if (!philo->forks || !philo->th)
+		return ;
+	i = -1;
+	while (++i < philo->args->philosophers)
 	{
-		init_philosophers(philo, args);
+		philo->forks[i] = 1;
+		philo->th[i] = 0;
 	}
+}
+
+void	init_simulation(t_philo *philo)
+{
+	int	i;
+
+	i = -1;
+	while (i < philo->args->philosophers)
+		pthread_create(&philo->th[i], NULL, &philosophers_routine, NULL);
+	i = -1;
+	while (i < philo->args->philosophers)
+		pthread_join(philo->th[i], NULL);
 }
 
 int	main(int argc, char **argv)
 {
-	t_args	*args;
+	t_philo	*philo;
 
-	args = NULL;
+	philo = NULL;
 	if (argc < 5 || argc > 6)
 		printf("\n-------------args error\n\n"); // sair do programa
 	if (!args_parser(argc, argv))
 		printf("\n-------------args invalid\n\n"); // sair do programa
-	args = init_args_struct(argv);
+	philo = init_philosophers(argc, argv);
+	(void)philo;
 	return(0);
 }

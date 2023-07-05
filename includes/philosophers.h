@@ -15,7 +15,7 @@
 
 # include <stdlib.h>
 # include <stdio.h>
-# include <threads.h>
+# include <pthread.h>
 
 typedef struct s_args {
 	int	philosophers;
@@ -29,10 +29,12 @@ typedef struct s_philo {
 	t_args		*args;
 	pthread_t 	*th;
 	int		*forks;
-}
+}	t_philo;
 
 int	args_parser(int ac, char **av);
-t_args	*init_args_struct(char **av);
+t_philo	*init_philosophers(int ac, char **av);
+void	*philosophers_routine(void *arg);
+void	init_forks(t_philo *philo);
 
 int	ft_atoi(const char *nptr);
 
