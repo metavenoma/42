@@ -1,5 +1,5 @@
 NAME = philosophers
-SRCS = philo.c utils.c
+SRCS = philosophers.c init.c utils.c exit.c
 OBJ = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 
@@ -20,7 +20,7 @@ all: $(NAME)
 	@echo "philosophers is ready!"
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(INC)
+	@$(CC) -lpthread $(CFLAGS) $(OBJS) -o $(NAME) $(INC)
 
 clean: 
 	@$(RM) $(OBJ_PATH)
