@@ -47,21 +47,18 @@ typedef struct s_args {
 	t_philo			*philo;
 }	t_args;
 
-int		args_parser(int ac, char **av);
-t_args	*init_philosophers(t_args *args);
-t_args	*init_args(int ac, char **av);
-void	*philosophers_routine(void *arg);
-void	init_forks(t_args *args);
-void	init_simulation(t_args *args);
-int		terminate(t_args *args);
-void	*philosophers_routine(void *arg);
-long long	timestamp(void);
-long long	time_diff(long long previous_time);
-void	print_philosophers(t_args *args, int philo_id, char *s);
-void	philosophers_actions(t_philo *philo);
-void	hot_girl_watching(t_args *args);
-void	ft_usleep(long long time);
+int			args_parser(int ac, char **av);
+void		init_philosophers(t_args *args);
+t_args		*init_args(int ac, char **av);
+void		*philosophers_routine(void *arg);
+void		init_forks(t_args *args);
+int			init_simulation(t_args *args);
+int			terminate(t_args *args);
+long long	timestamp(long long previous_time);
+void		print_philosophers(t_args *args, int philo_id, char *s);
+void		philosophers_actions(t_philo *philo, t_args *args);
+void		hot_girl_watching(t_args *args);
 
-int	ft_atoi(const char *nptr);
+int			ft_atoi(const char *nptr);
 
 #endif

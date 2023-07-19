@@ -13,12 +13,13 @@
 #include "philosophers.h"
 #include <pthread.h>
 
-t_args	*init_philosophers(t_args *args)
+void	init_philosophers(t_args *args)
 {
 	int	i;
 	
 	i = -1;
 	args->philo = (t_philo *)malloc(sizeof(t_philo) * (args->philosophers + 1));
+	// if (!args->philo)
 	while (++i < args->philosophers)
 	{
 		args->philo[i].id = i + 1;
@@ -28,7 +29,6 @@ t_args	*init_philosophers(t_args *args)
 		args->philo[i].is_dead = 0;
 		args->philo[i].args = args;
 	}
-	return (args);
 }
 
 int	init_mutex(t_args *args)
@@ -49,8 +49,6 @@ int	init_mutex(t_args *args)
 		return (1);
 	if (pthread_mutex_init(&(args->checker), NULL))
 		return (1);
-	if (pthread_mutex_init(&(args->checker), NULL))
-		return (1);
 	return (0);
 }
 
@@ -68,24 +66,30 @@ t_args	*init_args(int ac, char **av)
 	args->number_of_meals = -1;
 	if (ac == 6)
 		args->number_of_meals = ft_atoi(av[5]);
-	args->start_time = timestamp();
+	args->start_time = timestamp(0);
 	args->is_dead = 0;
 	args->meals_finished = 0;
-	args = init_philosophers(args);
 	if (!init_mutex(args))
 		return (NULL);
+	init_philosophers(args);
 	return (args);
 }
 
-void	init_simulation(t_args *args)
+int	init_simulation(t_args *args)
 {
 	int	i;
 
 	i = -1;
 	while (++i < args->philosophers)
-		pthread_create(&args->philo[i].th, NULL, &philosophers_routine, &(args->philo[i]));
-	i = -1;
-	while (++i < args->philosophers)
-		pthread_join(args->philo[i].th, NULL);
+	{
+		if (pthread_create(&args->philo[i].th, NULL,
+			&philosophers_routine, &(args->philo[i])))
+			return (1);
+		pthread_mutex_lock(&(args->checker));
+		args->philo[i].last_meal = timestamp(0); 
+		pthread_mutex_unlock(&(args->checker));
+	}
 	hot_girl_watching(args);
+	terminate(args);
+	return (0);
 }

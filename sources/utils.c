@@ -61,36 +61,24 @@ int	args_parser(int ac, char **av)
 	return (1);
 }
 
-long long	timestamp(void)
+long long	timestamp(long long previous_time)
 {
+	long long		current_time;
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return((time.tv_sec * 1000) + (time.tv_usec / 1000));
-}
-
-long long	time_diff(long long previous_time)
-{
-	long long	current_time;
-
-	current_time = timestamp();
+	current_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);
 	return(current_time - previous_time);
-}
-
-void	ft_usleep(long long time)
-{
-	long long	current_time;
-
-	current_time = timestamp();
-	while (timestamp() - current_time < time)
-		usleep(50);
 }
 
 void	print_philosophers(t_args *args, int philo_id, char *s)
 {
 	pthread_mutex_lock(&(args->write_mutex));
-	printf("%lli ", time_diff(args->start_time));
-	printf("%i ", philo_id);
-	printf("%s\n", s);
+	if (!args->is_dead)
+	{
+		printf("%lli ", timestamp(args->start_time));
+		printf("%i ", philo_id);
+		printf("%s\n", s);
+	}
 	pthread_mutex_unlock(&(args->write_mutex));
 }

@@ -9,31 +9,43 @@ void	*philosophers_routine(void *void_philo)
 	args = philo->args;
 	while (!args->is_dead)
 	{
-		philosophers_actions(philo);
+		philosophers_actions(philo, args);
 		if (args->meals_finished)
 			break ;
 		print_philosophers(args, philo->id, "is sleeping");
-		ft_usleep(args->time_to_sleep);
+		usleep(args->time_to_sleep * 1000);
 		print_philosophers(args, philo->id, "is thinking");
 	}
 	return (NULL);
 }
 
-void	philosophers_actions(t_philo *philo)
-{
-	t_args	*args;
+// int	is_philo_dead(t_args *args)
+// {
 
-	args = philo->args;
-	pthread_mutex_lock(&(args->forks[philo->left_fork]));
-	print_philosophers(args, philo->id, "has taken a fork");
-	pthread_mutex_lock(&(args->forks[philo->right_fork]));
-	print_philosophers(args, philo->id, "has taken a fork");
+// }
+
+void	philosophers_actions(t_philo *philo, t_args *args)
+{
+	if (philo->id % 2)
+	{
+		pthread_mutex_lock(&(args->forks[philo->left_fork]));
+		print_philosophers(args, philo->id, "has taken a fork");
+		pthread_mutex_lock(&(args->forks[philo->right_fork]));
+		print_philosophers(args, philo->id, "has taken a fork");
+	}
+	else
+	{
+		pthread_mutex_lock(&(args->forks[philo->right_fork]));
+		print_philosophers(args, philo->id, "has taken a fork");
+		pthread_mutex_lock(&(args->forks[philo->left_fork]));
+		print_philosophers(args, philo->id, "has taken a fork");
+	}
 	pthread_mutex_lock(&(args->checker));
-	print_philosophers(args, philo->id, "is eating");
-	philo->last_meal = timestamp();
-	pthread_mutex_unlock(&(args->checker));
-	ft_usleep(args->time_to_eat);
+	philo->last_meal = timestamp(0);
 	philo->times_ate += 1;
+	pthread_mutex_unlock(&(args->checker));
+	print_philosophers(args, philo->id, "is eating");
+	usleep(args->time_to_eat * 1000);
 	pthread_mutex_unlock(&(args->forks[philo->left_fork]));
 	pthread_mutex_unlock(&(args->forks[philo->right_fork]));
 }
@@ -48,7 +60,7 @@ void	hot_girl_watching(t_args *args)
 		while (++i < args->philosophers && !args->is_dead)
 		{
 			pthread_mutex_lock(&(args->checker));
-			if (time_diff(args->philo->last_meal) > args->time_to_eat)
+			if (timestamp(args->philo->last_meal) > args->time_to_eat)
 			{
 				print_philosophers(args, args->philo->id, "died");
 				args->is_dead = 1;
@@ -80,7 +92,7 @@ int	main(int argc, char **argv)
 	args = init_args(argc, argv);
 	if (!args)
 		return(1);
-	init_simulation(args);
-	terminate(args);
+	if (init_simulation(args))
+		return (1);
 	return(0);
 }
