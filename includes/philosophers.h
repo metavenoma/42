@@ -27,7 +27,6 @@ typedef struct s_philo {
 	int			left_fork;
 	int			right_fork;
 	long long	last_meal;
-	int			is_dead;
 	int			times_ate;
 	t_args		*args;
 }	t_philo;
@@ -39,10 +38,13 @@ typedef struct s_args {
 	int				time_to_sleep;
 	int				number_of_meals;
 	int				is_dead;
+	int				is_dead_2;
 	int				meals_finished;
 	long long		start_time;
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	checker;
+	pthread_mutex_t	last_meal_mutex;
+	pthread_mutex_t times_ate_mutex;
+	pthread_mutex_t	death_mutex;
 	pthread_mutex_t *forks;
 	t_philo			*philo;
 }	t_args;
@@ -58,6 +60,10 @@ long long	timestamp(long long previous_time);
 void		print_philosophers(t_args *args, int philo_id, char *s);
 void		philosophers_actions(t_philo *philo, t_args *args);
 void		hot_girl_watching(t_args *args);
+int			has_anyone_died(t_args *args);
+
+int		is_philo_dead(t_args *args, t_philo *philo);
+int		is_dinner_finished(t_args *args, t_philo *philo);
 
 int			ft_atoi(const char *nptr);
 

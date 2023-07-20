@@ -19,14 +19,13 @@ void	init_philosophers(t_args *args)
 	
 	i = -1;
 	args->philo = (t_philo *)malloc(sizeof(t_philo) * (args->philosophers + 1));
-	// if (!args->philo)
 	while (++i < args->philosophers)
 	{
 		args->philo[i].id = i + 1;
 		args->philo[i].left_fork = i;
 		args->philo[i].right_fork = (i + 1) % args->philosophers;
 		args->philo[i].last_meal = 0;
-		args->philo[i].is_dead = 0;
+		args->philo[i].times_ate = 0;
 		args->philo[i].args = args;
 	}
 }
@@ -36,7 +35,7 @@ int	init_mutex(t_args *args)
 	int i;
 
 	args->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-		* (args->philosophers) + 1);
+		* (args->philosophers));
 	if (args->forks)
 		return (1);
 	i = -1;
@@ -47,7 +46,9 @@ int	init_mutex(t_args *args)
 	}
 	if (pthread_mutex_init(&(args->write_mutex), NULL))
 		return (1);
-	if (pthread_mutex_init(&(args->checker), NULL))
+	if (pthread_mutex_init(&(args->last_meal_mutex), NULL))
+		return (1);
+	if (pthread_mutex_init(&(args->death_mutex), NULL))
 		return (1);
 	return (0);
 }
@@ -68,6 +69,7 @@ t_args	*init_args(int ac, char **av)
 		args->number_of_meals = ft_atoi(av[5]);
 	args->start_time = timestamp(0);
 	args->is_dead = 0;
+	args->is_dead_2 = 0;
 	args->meals_finished = 0;
 	if (!init_mutex(args))
 		return (NULL);
@@ -82,14 +84,16 @@ int	init_simulation(t_args *args)
 	i = -1;
 	while (++i < args->philosophers)
 	{
-		if (pthread_create(&args->philo[i].th, NULL,
-			&philosophers_routine, &(args->philo[i])))
+		if (pthread_create(&args->philo[i].th, NULL, &philosophers_routine, &(args->philo[i])))
 			return (1);
-		pthread_mutex_lock(&(args->checker));
+		pthread_mutex_lock(&(args->last_meal_mutex));
 		args->philo[i].last_meal = timestamp(0); 
-		pthread_mutex_unlock(&(args->checker));
+		pthread_mutex_unlock(&(args->last_meal_mutex));
 	}
 	hot_girl_watching(args);
 	terminate(args);
+	// i = -1;
+	// while (++i < args->philosophers)
+	// 	pthread_join(args->philo[i].th, NULL);
 	return (0);
 }

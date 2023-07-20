@@ -74,7 +74,7 @@ long long	timestamp(long long previous_time)
 void	print_philosophers(t_args *args, int philo_id, char *s)
 {
 	pthread_mutex_lock(&(args->write_mutex));
-	if (!args->is_dead)
+	if (!has_anyone_died(args))
 	{
 		printf("%lli ", timestamp(args->start_time));
 		printf("%i ", philo_id);

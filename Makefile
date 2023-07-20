@@ -1,4 +1,4 @@
-NAME = philosophers
+NAME = philo
 SRCS = philosophers.c init.c utils.c exit.c
 OBJ = $(SRCS:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
