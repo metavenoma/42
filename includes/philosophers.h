@@ -19,11 +19,11 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct s_args t_args;
+typedef struct s_args	t_args;
 
 typedef struct s_philo {
 	int			id;
-	pthread_t 	th;
+	pthread_t	th;
 	int			left_fork;
 	int			right_fork;
 	long long	last_meal;
@@ -43,9 +43,9 @@ typedef struct s_args {
 	long long		start_time;
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	last_meal_mutex;
-	pthread_mutex_t times_ate_mutex;
+	pthread_mutex_t	times_ate_mutex;
 	pthread_mutex_t	death_mutex;
-	pthread_mutex_t *forks;
+	pthread_mutex_t	*forks;
 	t_philo			*philo;
 }	t_args;
 
@@ -62,8 +62,8 @@ void		philosophers_actions(t_philo *philo, t_args *args);
 void		hot_girl_watching(t_args *args);
 int			has_anyone_died(t_args *args);
 
-int		is_philo_dead(t_args *args, t_philo *philo);
-int		is_dinner_finished(t_args *args, t_philo *philo);
+int			is_philo_dead(t_args *args, t_philo *philo);
+int			is_dinner_finished(t_args *args, t_philo *philo);
 
 int			ft_atoi(const char *nptr);
 

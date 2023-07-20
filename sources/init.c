@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverona- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,7 +16,7 @@
 void	init_philosophers(t_args *args)
 {
 	int	i;
-	
+
 	i = -1;
 	args->philo = (t_philo *)malloc(sizeof(t_philo) * (args->philosophers + 1));
 	while (++i < args->philosophers)
@@ -32,10 +32,10 @@ void	init_philosophers(t_args *args)
 
 int	init_mutex(t_args *args)
 {
-	int i;
+	int	i;
 
 	args->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
-		* (args->philosophers));
+			* (args->philosophers));
 	if (args->forks)
 		return (1);
 	i = -1;
@@ -84,16 +84,14 @@ int	init_simulation(t_args *args)
 	i = -1;
 	while (++i < args->philosophers)
 	{
-		if (pthread_create(&args->philo[i].th, NULL, &philosophers_routine, &(args->philo[i])))
+		if (pthread_create(&args->philo[i].th, NULL,
+				&philosophers_routine, &(args->philo[i])))
 			return (1);
 		pthread_mutex_lock(&(args->last_meal_mutex));
-		args->philo[i].last_meal = timestamp(0); 
+		args->philo[i].last_meal = timestamp(0);
 		pthread_mutex_unlock(&(args->last_meal_mutex));
 	}
 	hot_girl_watching(args);
 	terminate(args);
-	// i = -1;
-	// while (++i < args->philosophers)
-	// 	pthread_join(args->philo[i].th, NULL);
 	return (0);
 }
