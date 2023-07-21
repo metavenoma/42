@@ -43,6 +43,8 @@ int	init_mutex(t_args *args)
 	{
 		if (pthread_mutex_init(&(args->forks[i]), NULL))
 			return (1);
+		if (pthread_mutex_init(&(args->philo[i].is_done_mutex), NULL))
+			return (1);
 	}
 	if (pthread_mutex_init(&(args->write_mutex), NULL))
 		return (1);
@@ -50,6 +52,8 @@ int	init_mutex(t_args *args)
 		return (1);
 	if (pthread_mutex_init(&(args->death_mutex), NULL))
 		return (1);
+	// if (pthread_mutex_init(&(args->times_ate_mutex), NULL))
+	// 	return (1);
 	return (0);
 }
 

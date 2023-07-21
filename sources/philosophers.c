@@ -23,20 +23,23 @@ void	*philosophers_routine(void *void_philo)
 	{
 		if (has_anyone_died(args))
 			break ;
-		// pthread_mutex_lock(&(args->last_meal_mutex));
 		if (args->number_of_meals != -1
 			&& philo->times_ate >= args->number_of_meals)
 		{
-			// pthread_mutex_unlock(&(args->last_meal_mutex));
+			pthread_mutex_lock(&(philo->is_done_mutex));
+			philo->is_done = 1;
+			pthread_mutex_unlock(&(philo->is_done_mutex));
 			break ;
 		}
-		// pthread_mutex_unlock(&(args->last_meal_mutex));
 		philosophers_actions(philo, args);
+		// pthread_mutex_lock(&(args->times_ate_mutex));
+		philo->times_ate += 1;
+		// pthread_mutex_unlock(&(args->times_ate_mutex));
 		print_philosophers(args, philo->id, "is sleeping");
 		usleep(args->time_to_sleep * 1000);
 		print_philosophers(args, philo->id, "is thinking");
 		if (philo->id % 2)
-			usleep(200);
+			usleep(3000);
 	}
 	return (NULL);
 }
@@ -72,26 +75,23 @@ void	philosophers_actions(t_philo *philo, t_args *args)
 	pthread_mutex_lock(&(args->last_meal_mutex));
 	philo->last_meal = timestamp(0);
 	pthread_mutex_unlock(&(args->last_meal_mutex));
-	pthread_mutex_lock(&(args->times_ate_mutex));
-	philo->times_ate += 1;
-	pthread_mutex_unlock(&(args->times_ate_mutex));
 	print_philosophers(args, philo->id, "is eating");
 	usleep(args->time_to_eat * 1000);
 	pthread_mutex_unlock(&(args->forks[philo->left_fork]));
 	pthread_mutex_unlock(&(args->forks[philo->right_fork]));
 }
 
-int	is_dinner_finished(t_args *args, t_philo *philo)
-{
-	pthread_mutex_lock(&(args->times_ate_mutex));
-	if (philo->times_ate < args->number_of_meals || args->number_of_meals == -1)
-	{
-		pthread_mutex_unlock(&(args->times_ate_mutex));
-		return (0);
-	}
-	pthread_mutex_unlock(&(args->times_ate_mutex));
-	return (1);
-}
+// int	is_dinner_finished(t_args *args, t_philo *philo)
+// {
+// 	pthread_mutex_lock(&(args->times_ate_mutex));
+// 	if (philo->times_ate < args->number_of_meals || args->number_of_meals == -1)
+// 	{
+// 		pthread_mutex_unlock(&(args->times_ate_mutex));
+// 		return (0);
+// 	}
+// 	pthread_mutex_unlock(&(args->times_ate_mutex));
+// 	return (1);
+// }
 
 int	is_philo_dead(t_args *args, t_philo *philo)
 {
@@ -105,6 +105,24 @@ int	is_philo_dead(t_args *args, t_philo *philo)
 	return (0);
 }
 
+int	are_philos_done_eating(t_args *args)
+{
+	int	i;
+
+	i = -1;
+	while (++i < args->philosophers)
+	{
+		pthread_mutex_lock(&(args->philo[i].is_done_mutex));
+		if (!(args->philo[i].is_done))
+		{
+			pthread_mutex_unlock(&(args->philo[i].is_done_mutex));
+			return (0);
+		}
+		pthread_mutex_unlock(&(args->philo[i].is_done_mutex));
+	}
+	return (1);
+}
+
 void	hot_girl_watching(t_args *args)
 {
 	int	i;
@@ -116,18 +134,15 @@ void	hot_girl_watching(t_args *args)
 		philosophers_ate = 0;
 		while (++i < args->philosophers)
 		{
-			if (is_philo_dead(args, &args->philo[i])
-				&& !is_dinner_finished(args, &args->philo[i]))
+			if (is_philo_dead(args, &args->philo[i]))
+				// && !is_dinner_finished(args, &args->philo[i]))
 			{
 				print_philosophers(args, args->philo[i].id, "died");
 				args->is_dead = 1;
 			}
-			pthread_mutex_lock(&(args->times_ate_mutex));
-			if (args->philo[i].times_ate >= args->number_of_meals
-				&& args->number_of_meals != -1)
-				philosophers_ate++;
-			pthread_mutex_unlock(&(args->times_ate_mutex));
 		}
+		if (are_philos_done_eating(args))
+			break ;
 		if (args->is_dead)
 		{
 			pthread_mutex_lock(&(args->death_mutex));
@@ -135,8 +150,6 @@ void	hot_girl_watching(t_args *args)
 			pthread_mutex_unlock(&(args->death_mutex));
 			break ;
 		}
-		if (philosophers_ate == args->philosophers)
-			break ;
 	}
 }
 
