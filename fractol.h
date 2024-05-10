@@ -12,6 +12,10 @@
 #include <X11/X.h>
 #include <math.h>
 
+#define K_ESCAPE 65307
+#define MOUSE_UP 4
+#define MOUSE_DOWN 5
+
 typedef struct s_complex
 {
 	double	re;
