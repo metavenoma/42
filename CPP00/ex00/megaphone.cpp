@@ -15,6 +15,7 @@
 /*☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆*/
 
 #include <iostream>
+#include <cstring>
 
 int	main(int argc, char **argv)
 {
@@ -27,13 +28,8 @@ int	main(int argc, char **argv)
 	{
 		for (int j = 0; argv[i][j] != '\0'; j++)
 		{
-			if (argv[i][j] >= 'a' && argv[i][j] <= 'z')
-				argv[i][j] -= 32;
+			std::cout << (char)toupper(argv[i][j]);
 		}
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		std::cout << argv[i];
 	}
 	std::cout << std::endl;
 	return (0);
