@@ -32,16 +32,19 @@ int	main(void)
 		animalArray[i]->makeSound();
 		if (i < size)
 		{
-			Dog* dogPtr = static_cast<Dog*>(animalArray[i]);
+			Dog *dogPtr = static_cast<Dog*>(animalArray[i]);
 			std::cout << ORANGE << "Brain address from Animal[" << i << "] = " << &dogPtr->getBrain() << std::endl;
 		}
 		else
 		{
-			Cat* catPtr = static_cast<Cat*>(animalArray[i]);
+			Cat *catPtr = static_cast<Cat*>(animalArray[i]);
 			std::cout << ORANGE << "Brain address from Animal[" << i << "] = " << &catPtr->getBrain() << std::endl;
 		}
 	}
-
+	Dog d1;
+	Dog d2 = d1;
+	std::cout << ORANGE << "TESTING HARD COPY:\nBrain address for Dog 1 = " << &d1.getBrain() \
+		<< "\nBrain address for Dog 2 = " << &d2.getBrain() << std::endl;
 	for (int i = 0; i < size * 2; i++)
 		delete animalArray[i];
 

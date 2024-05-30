@@ -20,7 +20,6 @@ int	main(void)
 {
 	AAnimal *dog = new Dog();
 	AAnimal *cat = new Cat();
-
 	dog->makeSound();
 	cat->makeSound();
 

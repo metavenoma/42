@@ -22,14 +22,18 @@ Cat::Cat(void)
 Cat::Cat(const Cat &cat)
 {
 	std::cout << YELLOW << "Cat" << PINK << " copy constructor called!" << RESET << std::endl;
-	*this = cat;
+	type = cat.getType();
+	this->brain = new Brain(*cat.brain);
 }
 
 Cat &Cat::operator=(const Cat &cat)
 {
 	std::cout << YELLOW << "Cat" << PINK << " copy assignment operator called!" << RESET << std::endl;
-	type = cat.getType();
-	this->brain = cat.brain;
+	if (this != &cat)
+	{
+		type = cat.getType();
+		this->brain = new Brain(*cat.brain);
+	}	
 	return (*this);
 }
 

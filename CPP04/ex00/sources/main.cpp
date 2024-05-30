@@ -23,12 +23,20 @@ int	main(void)
 	const Animal *dog = new Dog();
 	const WrongAnimal *wanimal = new WrongAnimal();
 	const WrongAnimal *wcat = new WrongCat();
+	const WrongCat wcat2;
 
+	std::cout << 
+		"Anymal type: " << animal->getType() << "\n" \
+		<< "Cat type: " << cat->getType() << "\n" \
+		<< "Dog type: " << dog->getType() << "\n" \
+		<< "Wrong animal type: " << wanimal->getType() << "\n" \
+		<< "Wrong cat type: " << wcat->getType() << std::endl;
 	animal->makeSound();
 	cat->makeSound();
 	dog->makeSound();
 	wanimal->makeSound();
 	wcat->makeSound();
+	wcat2.makeSound();
 
 	delete animal;
 	delete cat;
