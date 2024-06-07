@@ -19,7 +19,7 @@
 #include "FragTrap.hpp"
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(void): ClapTrap(), ScavTrap(), FragTrap()
+DiamondTrap::DiamondTrap(void): ClapTrap("name", 70, 70, 70), ScavTrap(), FragTrap()
 {
 	this->_name = "Default";
 	this->ClapTrap::_name = this->_name + "_clap_name";
@@ -39,7 +39,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &diamondtrap): ClapTrap(diamondtrap),
 	std::cout << "DiamondTrap " << diamondtrap._name << " copy constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name): ClapTrap(name), ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap(std::string name): ClapTrap(name, 70, 70, 70), ScavTrap(name), FragTrap(name)
 {
 	this->_name = name;
 	this->ClapTrap::_name = this->_name + "_clap_name";

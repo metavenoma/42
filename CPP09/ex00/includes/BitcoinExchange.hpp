@@ -7,27 +7,16 @@
 /*                                    |___/                                    */
 /*                                                                             */
 /*                                                        ██╗  ██╗██████╗      */
-/*          main.cpp                                      ██║  ██║╚════██╗     */
+/*          BitcoinExchange.hpp                           ██║  ██║╚════██╗     */
 /*   Created by rverona-                                  ███████║ █████╔╝     */
-/*   Date: 2024-05-06                                     ╚════██║██╔═══╝      */
+/*   Date: 2024-05-21                                     ╚════██║██╔═══╝      */
 /*                                                             ██║███████╗     */
 /*                                                             ╚═╝╚══════╝     */
 /*☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆*/
 
-#include "DiamondTrap.hpp"
+#pragma once
 
-int	main(void)
+class BitcoinExchange
 {
-	DiamondTrap elf("Elf");
-	DiamondTrap orc("Orc");
-	DiamondTrap goblin(orc);
-
-	std::cout << "Diam Name: " << elf.getName() << " | HP: " << elf.getHp() << " | EP: " << elf.getEp() << " | AD: " << elf.getAd() << std::endl;
-	std::cout << "Scav Name: " << elf.ScavTrap::getName() << " | HP: " << elf.ScavTrap::getHp() << " | EP: " << elf.ScavTrap::getEp() << " | AD: " << elf.ScavTrap::getAd() << std::endl;
-	orc.attack("Elf");
-	orc.whoAmI();
-	orc = elf;
-	orc.whoAmI();
-
-	return (0);
-}
+	
+};
