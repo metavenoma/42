@@ -17,4 +17,4 @@ phase I      | [minitalk](https://github.com/metavenoma/42/tree/master/minitalk)
 phase II     | [push_swap](https://github.com/metavenoma/42/tree/master/push_swap); | a program to sort int arrays using only a few allowed movements;
 phase II     | [minishell](https://github.com/metavenoma/minishell); | our own mini version of a Shell, using bash as reference (made with rsleslie);
 phase II     | [philosophers](https://github.com/metavenoma/42/tree/master/philosophers); | a program that uses threads to simulate philosophers. they have to eat, sleep and think without dying!;
-phase III    | [CPP](https://github.com/metavenoma/42/tree/master/cpp); | a bunch of C++ exercise lists
+phase III    | [CPP](https://github.com/metavenoma/42/tree/master/cpp); | a bunch of C++ exercise lists;
